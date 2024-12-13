@@ -1,0 +1,18 @@
+server:
+  port: 8081 # Client application port, can be any free port
+
+spring:
+  application:
+    name: user-application # Name of your service for registration
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/test # MongoDB URI for database connectivity
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9091/eureka/ # URL of the Eureka server
+    register-with-eureka: true # Register the client with Eureka
+    fetch-registry: true # Fetch the registry to discover other services
+  instance:
+    prefer-ip-address: true

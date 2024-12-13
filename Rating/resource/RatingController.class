@@ -1,0 +1,52 @@
+package com.rating.resource;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.rating.domain.Rating;
+import com.rating.service.RatiingServie;
+
+import jakarta.inject.Inject;
+
+
+@RestController
+@RequestMapping("/api/rating")
+public class RatingController {
+	
+	@Inject
+	private RatiingServie ratingServie;
+	
+	@PostMapping
+	public ResponseEntity<?> save(@RequestBody Rating rating){
+		return new ResponseEntity<>(ratingServie.save(rating),HttpStatus.OK);
+	}
+	
+	@PutMapping
+	public ResponseEntity<?> updateRating(@RequestBody Rating rating){
+		return new ResponseEntity<>(ratingServie.update(rating),HttpStatus.OK);
+	}
+	@GetMapping
+	public ResponseEntity<?> getAllRating(){
+		return new ResponseEntity<>(ratingServie.getAll(),HttpStatus.OK);
+	}
+	
+	@GetMapping("{/id}")
+	public ResponseEntity<?> getAllRating(@PathVariable String id){
+		return new ResponseEntity<>(ratingServie.getById(id),HttpStatus.OK);
+	}
+	
+	@DeleteMapping ("{/id}")
+	public ResponseEntity<?> deleteRatingById(@PathVariable String id){
+		ratingServie.deleteRatingById(id);
+		return null;
+	}
+
+}

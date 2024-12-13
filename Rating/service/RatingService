@@ -1,0 +1,39 @@
+package com.rating.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.rating.domain.Rating;
+import com.rating.repo.RatingRepository;
+
+import jakarta.inject.Inject;
+
+@Service
+public class RatiingServie {
+	
+	@Inject
+	private RatingRepository ratingRepository;
+	
+	
+	public Rating save(Rating rating) {
+		return ratingRepository.save(rating);
+	}
+	
+	public Rating update(Rating rating) {
+		return ratingRepository.save(rating);
+	}
+	
+	public Rating getById(String id) {
+		return ratingRepository.findById(id).get();
+	}
+	
+	public List<Rating> getAll() {
+		return ratingRepository.findAll();
+	}
+	
+	public void deleteRatingById(String id) {
+		ratingRepository.deleteById(id);
+	}
+
+}
